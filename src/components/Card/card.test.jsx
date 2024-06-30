@@ -103,4 +103,4 @@ describe("azaltma butonun aktiflik testleri", () => {
     expect(button).toBeDisabled();
   });
 });
-w;
+
