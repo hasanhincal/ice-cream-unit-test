@@ -93,7 +93,7 @@ describe("azaltma butonun aktiflik testleri", () => {
     // 3- buton aktiftir
     expect(button).toBeEnabled();
   });
-  test("miktar < 0 olduğunda buton inaktiftir", async () => {
+  test("miktar 0 olduğunda buton inaktiftir", async () => {
     // userevent kurulumu
     const user = userEvent.setup();
 
@@ -107,3 +107,4 @@ describe("azaltma butonun aktiflik testleri", () => {
     expect(button).toBeDisabled();
   });
 });
+w;
