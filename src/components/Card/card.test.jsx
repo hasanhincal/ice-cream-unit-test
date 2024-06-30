@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Card from ".";
 import userEvent from "@testing-library/user-event";
 
@@ -38,6 +38,7 @@ test("Miktar ,Başlık ve Fotoğraf gelen proba göre ekrana basılır", () => {
   expect(image).toHaveAttribute("src", item.imagePath);
 });
 
+// ekle azalt butonlarında çalışacak fonksiyonların testleri
 test("Butonlara tıklanınca fonksiyonlar doğru parametreler ile çalışır", async () => {
   const user = userEvent.setup();
 
@@ -75,4 +76,34 @@ test("Butonlara tıklanınca fonksiyonlar doğru parametreler ile çalışır", 
 
   // removefrombasket fonksiyonu doğru paremetrelerle çalışıyormu?
   expect(removeMockFn).toHaveBeenCalledWith(item.id);
+});
+
+// azalt butonunun aktiflik testleri
+describe("azaltma butonun aktiflik testleri", () => {
+  test("miktar > 0 oluğunda azalt butonu aktiftir", async () => {
+    // userevent kurulumu
+    const user = userEvent.setup();
+
+    // 1- bileşen render edilir
+    render(<Card item={item} amount={3} />);
+
+    // 2- elementleri çağır
+    const button = screen.getByRole("button", { name: "Azalt" });
+
+    // 3- buton aktiftir
+    expect(button).toBeEnabled();
+  });
+  test("miktar < 0 olduğunda buton inaktiftir", async () => {
+    // userevent kurulumu
+    const user = userEvent.setup();
+
+    // 1- bileşen render edilir
+    render(<Card item={item} amount={0} />);
+
+    // 2- elementleri çağır
+    const button = screen.getByRole("button", { name: /azalt/i });
+
+    // 3- button inakftiftir
+    expect(button).toBeDisabled();
+  });
 });
