@@ -81,8 +81,6 @@ test("Butonlara tıklanınca fonksiyonlar doğru parametreler ile çalışır", 
 // azalt butonunun aktiflik testleri
 describe("azaltma butonun aktiflik testleri", () => {
   test("miktar > 0 oluğunda azalt butonu aktiftir", async () => {
-    // userevent kurulumu
-    const user = userEvent.setup();
 
     // 1- bileşen render edilir
     render(<Card item={item} amount={3} />);
@@ -94,8 +92,6 @@ describe("azaltma butonun aktiflik testleri", () => {
     expect(button).toBeEnabled();
   });
   test("miktar 0 olduğunda buton inaktiftir", async () => {
-    // userevent kurulumu
-    const user = userEvent.setup();
 
     // 1- bileşen render edilir
     render(<Card item={item} amount={0} />);
